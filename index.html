@@ -266,20 +266,11 @@
         console.log("  最終的なLogoフォームURL:", logoFormURL);
 
 
-        // Logoフォームへ遷移
-        // LIFFアプリ内ブラウザで開く場合はliff.openWindowを使用
-        liff.openWindow({
-          url: logoFormURL,
-          external: false // LINEアプリ内ブラウザで開く
-        });
-        console.log("Logoフォームへのリダイレクトを指示しました。");
-
-        // リダイレクト後、現在のLIFFウィンドウを閉じる
-        // 新しいウィンドウが開くのを少し待ってから閉じます。
-        setTimeout(() => {
-          liff.closeWindow();
-          console.log("LIFFウィンドウを閉じました。");
-        }, 2000); // 500ミリ秒（0.5秒）待機
+        // 現在のLIFFウィンドウをLogoフォームのURLにリダイレクトします。
+        // これにより、LIFFアプリがLogoフォームに置き換わり、
+        // ユーザーがLogoフォームを閉じるとLINEアプリに戻ります。
+        window.location.replace(logoFormURL);
+        console.log("現在のLIFFウィンドウをLogoフォームへリダイレクトしました。");
 
       } catch (error) {
         console.error("処理中に致命的なエラーが発生しました:", error);
